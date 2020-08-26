@@ -3,9 +3,9 @@
 require('dotenv').config();
 
 // Imports dependencies and set up http server
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
 
 const app = express().use(bodyParser.json()); // creates express http server
 
@@ -152,7 +152,19 @@ function handleMessage(sender_psid, received_message){
 
 //  Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  //  
+  let response;
+  //  Get the payload for the postback
+  let payload = received_postback.payload;
 
+  //  Set the response based on the postback payload
+  if ( paylaod === 'yes') {
+    response = { "text": "Thanks!" }
+  } else if ( payload === 'no') {
+    response = { "text": "Oops, try sending another picture." }
+  }
+  //  Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
 
 }
 
