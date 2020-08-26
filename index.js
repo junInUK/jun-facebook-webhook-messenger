@@ -158,7 +158,7 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   //  Set the response based on the postback payload
-  if ( paylaod === 'yes') {
+  if ( payload === 'yes') {
     response = { "text": "Thanks!" }
   } else if ( payload === 'no') {
     response = { "text": "Oops, try sending another picture." }
