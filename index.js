@@ -27,29 +27,29 @@ app.post('/webhook', (req, res) => {
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
-        
-        if (webhook_event.message){
-          let request_body = {
-            recipient: {
-              id: webhook_event.sender.id
-            },
-            message: webhook_event.message.text
-          };
-          fetch( `https://graph.facebook.com/v4.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`, 
-            {
-              method: "POST",
-              body: JSON.stringify(request_body),
-              headers: { 'Content-Type': 'application/json'}
-            },
-            (err, res, body) => {
-              if (err) {
-                console.error("Unable to send message:" +err);
-              }else if ( body.include("recipient_id")) {
-                console.log("message sent", body);
-              }
-            }
-          );
-        }
+
+        // if (webhook_event.message){
+        //   let request_body = {
+        //     recipient: {
+        //       id: webhook_event.sender.id
+        //     },
+        //     message: webhook_event.message.text
+        //   };
+        //   fetch( `https://graph.facebook.com/v4.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`, 
+        //     {
+        //       method: "POST",
+        //       body: JSON.stringify(request_body),
+        //       headers: { 'Content-Type': 'application/json'}
+        //     },
+        //     (err, res, body) => {
+        //       if (err) {
+        //         console.error("Unable to send message:" +err);
+        //       }else if ( body.include("recipient_id")) {
+        //         console.log("message sent", body);
+        //       }
+        //     }
+        //   );
+        // }
         
       });
   
