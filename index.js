@@ -17,6 +17,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
+    console.log("req:" + JSON.stringify(req));
  
     //  Parse the request body from the POST
     let body = req.body;
@@ -43,27 +44,7 @@ app.post('/webhook', (req, res) => {
         } else if (webhook_event.postback){
           handlePostback(sender_psid, webhook_event.postback);
         }
-        //   let request_body = {
-        //     recipient: {
-        //       id: webhook_event.sender.id
-        //     },
-        //     message: webhook_event.message.text
-        //   };
-        //   fetch( `https://graph.facebook.com/v4.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`, 
-        //     {
-        //       method: "POST",
-        //       body: JSON.stringify(request_body),
-        //       headers: { 'Content-Type': 'application/json'}
-        //     },
-        //     (err, res, body) => {
-        //       if (err) {
-        //         console.error("Unable to send message:" +err);
-        //       }else if ( body.include("recipient_id")) {
-        //         console.log("message sent", body);
-        //       }
-        //     }
-        //   );
-        // }
+        
         
       });
   
