@@ -17,11 +17,11 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
-    console.log("req:" + JSON.stringify(req));
- 
+    
     //  Parse the request body from the POST
     let body = req.body;
-      
+    console.log("req body:" + JSON.stringify(body));
+    
     // Check the webhook event is from a page subscription
     if (body.object === 'page') {
   
