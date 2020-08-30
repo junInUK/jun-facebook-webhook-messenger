@@ -143,6 +143,8 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Thanks!" }
   } else if ( payload === 'no') {
     response = { "text": "Oops, try sending another picture." }
+  } else if ( payload === 'start') {
+    response = { "text": "Welcome visit jun-webhook! Do you wish to leave a review or chat with us?"}
   }
   //  Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
