@@ -12,6 +12,22 @@ const app = express().use(bodyParser.json()); // creates express http server
 //  get page access token
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
+const START_MESSAGE = {
+  "text": "Welcome visit jun-webhook! Do you wish to leave a review or chat with us?",
+  "quick_replies": [
+    {
+      "content_type": "text",
+      "title": "Review",
+      "payload": "review"
+    },
+    {
+      "content_type": "text",
+      "title": "Chat",
+      "payload": "chat"
+    }
+  ]
+}
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -144,9 +160,9 @@ function handlePostback(sender_psid, received_postback) {
   } else if ( payload === 'no') {
     response = { "text": "Oops, try sending another picture." }
   } else if ( payload === 'start') {
-    response = { "text": "Welcome visit jun-webhook! Do you wish to leave a review or chat with us?"}
+    response = START_MESSAGE
   } else {
-    response = { "text": "Welcome visit jun-webhook! Do you wish to leave a review or chat with us?"}
+    response = START_MESSAGE
   }
   //  Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
